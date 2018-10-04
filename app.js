@@ -1,36 +1,46 @@
-// Log to console
-console.log('Hello World'); // log string
-console.log(123); // log number
-console.log(true); // log boolean
+// refer to git tree for all steps
 
-var varOne = 'Hello'; // variable
-console.log(varOne); // log variable
-console.log([1, 2,3,4]); // log array
-console.log({a:1, b:2}); // log object (this is a literal object)
-console.table({a:1, b:2}); // log output in a table
+// init VAR
+var greeting; // can be initialized without default value
+console.log(greeting); // by default variable value is undefined
+greeting = 'Hello';
+console.log(greeting);
 
-// mainly we use single quotes to quote string in javascript
-// this is because when involving html we gonna to use double quotes inside the string
-// most of the time
+// if greeting {
+//   console.log("")
+// }
 
-console.info('This is an info'); // log info
-console.error('This is some error'); // log an error
-console.warn('This is a warning'); // log a waring
-// console.clear(); // clear console tab
+// variable name can start with letters, number, _ and $
+// cannot start with a number
+// _ usually used for private variable
+// $ usually used with jQuery
+// usually we gonna use camelCase naming convention for multiwords name variable
+// var FirstName = 'Tom'; // Pascal Case
 
-console.time('Hello'); // this will start count and output the time taken to raech console.timeEnd()
-console.timeEnd('Hello');
+// LET
+let name = 'James Smith';
+console.log(name);
 
-// single line comments
+// CONST
+// variable value cannot be change 
+// cannot be re assigned to another form
+// const object's properties value can be change
+// const array, default value cannot be change, but can be push and etc
+// just cannot use assign after it have been assigned ( = )
+// use const when a value should not be reassigned
+const person = {
+  name: "John",
+  age: 12
+}
 
-/*
-  multi 
-  line 
-  comments
-*/
+console.log(person);
+person.name = 'Smith';
+console.log(person);
 
-/**
- * This for function or class
- * description for code documentation
- * good practice for large code
- */
+const numbers = [1,2,3,4,5];
+console.log(numbers);
+numbers.pop();
+console.log(numbers);
+numbers.push('six');
+console.log(numbers);
+
