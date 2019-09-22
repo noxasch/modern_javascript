@@ -3,7 +3,11 @@ let hostname = '192.168.1.106';
 let port = 8081;
 //"wss://192.168.0.106:8081/mqtt"
 // Create client instance
-let client = new Paho.MQTT.Client(hostname, port, "clientJs")
+// version 1.0.3: let client = new Paho.MQTT.Client()
+// version 1.1.0: let client = new Paho.Client()
+let client = new Paho.Client(hostname, port, "clientJs");
+
+console.log(client.path);
 
 // define callback method
 client.onConnectionLost = onConnectionLost;
@@ -13,7 +17,7 @@ client.onMessageArrived = onMessageArrived;
 // connect(options)
 // options is in object notation
 
-let options = {
+const options = {
   userName: "username",
   password: "password",
   useSSL: true, // cert must be first accepted via browser on https://address:port/ 
@@ -38,6 +42,7 @@ function onConnectionLost(responseObject){
 }
 
 function onConnectFail(responseObject){
+  console.log(responseObject)
   switch(responseObject.errorCode) {
     case 7:
       console.log("Error Code " + responseObject.errorCode + ": Certificate Error.");
@@ -61,11 +66,12 @@ let subscribeOpts = {
 }
 
 function onConnect(response){
-  console.log('onConnect');
-  //console.log(response);
+  console.log('onConnect:');
+  // console.log(response); // empty object, it actually pass nothing
   client.subscribe('#', subscribeOpts);
   client.subscribe('$device/#', subscribeOpts);
   client.subscribe('$SYS/broker/clients/connected', subscribeOpts);
+  client.subscribe('$SYS/broker/clients/#', subscribeOpts);
 }
 
 
@@ -77,7 +83,7 @@ function onSubscribedSuccess(response){
 function onMessageArrived(message){
   console.log("onMessageArrived: ");
   console.log(message.topic + " " + message.payloadString);
-  console.log(message)
+  //console.log(message)
 
   // this is workaround to filter message by topic
   // switch(message.topic){
