@@ -1,3 +1,4 @@
+/*jshint esversion:6 */
 // refer to git tree for all steps
 
 // init VAR
@@ -23,7 +24,7 @@ console.log(name);
 
 // CONST
 // variable value cannot be change 
-// cannot be re assigned to another form
+// cannot be re assigned to another form 
 // const object's properties value can be change
 // const array, default value cannot be change, but can be push and etc
 // just cannot use assign after it have been assigned ( = )
